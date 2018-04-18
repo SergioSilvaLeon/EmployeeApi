@@ -1,14 +1,22 @@
 package com.ssilva.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Employee {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
 
-    public Employee(){}
+    protected Employee(){}
 
-    public Employee(long id, String firstName, String lastName) {
+    public Employee(String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +44,14 @@ public class Employee {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString(){
+        return String.format(
+                "Employee[id='%d', firstName='%s', lastName=%'%s']",
+                id,firstName,lastName
+        );
     }
 
 
